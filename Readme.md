@@ -97,7 +97,7 @@ In the end, combine the lane line area with original image, result of the exampl
 
 ### Pipeline (video)
 
-#### 1. Test on video is 's a [link to my video result](https://www.youtube.com/watch?v=40vqlp-c1GE)
+#### 1. Test on video is 's a [here](https://www.youtube.com/watch?v=40vqlp-c1GE). Please open it in a new tab. 
 
 ---
 
@@ -105,6 +105,7 @@ In the end, combine the lane line area with original image, result of the exampl
 
 #### 1. I also test code on challenge and hard challenge video, the result is not satisfactory. The main reason for the challenge video is noise around the line, there is sharp linear change of the color of road surface around the line, therefore, this are likely to be passed the thresholding using gradient of color, and confuse the window search method to bring about incorrect result. 
 I am trying to filter the noise out by using thresholding on grayscale image, in order to only reserve white and yellow pixels and discard dark ones, since the noise part consists of all dark and gray pixels. But this may cause new problem in test on the easy video, sometimes even lane line pixels are discarded after adding thresholding on gray image. This may due to grayscale pixels values vary under different light conditions. 
+
 As for the hard challenge, there are more works required. Firstly, the perspective transform can not be the same for all images, since there are really sharp turn in which the starting and end points of 2 lane line may not lie in relatively middle of image. In this case, I think a preprocessing function is needed to decide the perspective transform in the first place. 
 On the other hand, there are some frames in the hard challenge video in which the brightness is so high that the line pixels and road pixels are not distinguishable by eyes. If it only happens in a small portion around center image, it is can be ignored since it is the same as space between lane line, however, if it happens in a large portion, this may lead to fail to detect the line. I need to learn more to figure out how to fix this.
 
