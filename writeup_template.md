@@ -82,7 +82,7 @@ For a video, do the same thing on the image of 1st frame, for later ones, only f
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-It is included in function 'measure_curvature'. The length of dashed line is 3.7m, the space between 2 dashed lines is about 20 feet = 6.1m, there are about 2 lines and 1 spaces in the image, the actual length covered in warped image is about 15 meters, which occupied 720 pixels. The warped 2 lane lines are about 900 pixels away from each other, with actual width of about 3.7 meters. Based on there two parameters, the curvature can be computed by the formula detailed explained at [http://www.intmath.com/applications-differentiation/8-radius-curvature.php][here].
+It is included in function 'measure_curvature'. The length of dashed line is 3.7m, the space between 2 dashed lines is about 20 feet = 6.1m, there are about 2 lines and 1 spaces in the image, the actual length covered in warped image is about 15 meters, which occupied 720 pixels. The warped 2 lane lines are about 900 pixels away from each other, with actual width of about 3.7 meters. Based on there two parameters, the curvature can be computed by the formula detailed explained at [here][http://www.intmath.com/applications-differentiation/8-radius-curvature.php].
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
@@ -98,7 +98,7 @@ In the end, combine the lane line area with original image, result of the exampl
 
 ### Pipeline (video)
 
-#### 1. Test on video. Here's a [link to my video result](./project_video.mp4)
+#### 1. Test on video is 's a [link to my video result](./outputproject_video.mp4)
 
 ---
 
