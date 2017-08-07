@@ -56,6 +56,7 @@ dst = np.float32(
 ```
  --> 
 Since the size of input image are fixed, perspective transform are the same for all images. Source and destination points are used in this project:
+
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
 | 540, 480      | 200, 0        | 
