@@ -41,8 +41,7 @@ I applied this distortion correction to the test image using the `cv2.undistort(
 ![alt text][image1]
 
 #### 2. Perspective transform
-
-The code for my perspective transform appears in lines 1 through 8 in the file `example.py`.  Here the source and destination points are define as follows, in order to transform only the region of interest in origin image to a top-viewed image. 
+The code for my perspective transform appears in lines 36 through 47 in the file `main.py`.  Here the source and destination points are define as following, in order to transform only the region of interest in origin image to a top-viewed image. 
 <!-- ```python
 src = np.float32(
     [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
@@ -57,7 +56,6 @@ dst = np.float32(
 ```
  --> 
 Since the size of input image are fixed, perspective transform are the same for all images. Source and destination points are used in this project:
-
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
 | 540, 480      | 200, 0        | 
@@ -65,24 +63,24 @@ Since the size of input image are fixed, perspective transform are the same for 
 | 1074, 600     | 1080, 720     |
 | 740, 480      | 200, 720      |
 
+
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
 ![alt text][image2]
 #### 3. Thresholding using color space and gradient.
 
-I used a combination of color and gradient thresholds to generate a binary image, since hue and saturation channel in HLS performs robustly in detecting the lane line, these two color spaces are used in this section. I applied 'cv2.Sobel' on hue channel, then applied thresholding on absolute sobel value of hue channel and raw saturation channel. Combine the result of these two thresholded images as the output.
+I used a combination of color and gradient thresholds to generate a binary image, since hue and saturation channel in HLS performs robustly in detecting the lane line, these two color spaces are used in this section. I applied 'cv2.Sobel' on hue channel, then applied thresholding on absolute sobel value of hue channel and raw saturation channel. Combine the result of these two thresholded images as the output. The code appears 'thresholding' function.
 ![alt text][image3]
 
 
 #### 4. Find the line using window search
-For an image, window search are used for the warped thresholded image. For a given window, select position on x-axis with most non-zero pixels as a point on a line. Go through the whole image from bottom to top.
-For a video, do the same thing on the image of 1st frame, for later ones, only find non-zero pixels around the previous result line. If there is no line found or the newly found line has unreasonable curvature, redo the window search. The image below is an example of found lines.
-
+For an image, window search are used for the warped thresholded image. For a given window, select x-axis coordinate with most non-zero pixels among points at this coordinates as a point on the lane line. Go through the whole image from bottom to top. The code appears in function 'find_line'.
+For a video, do the same thing on the image of 1st frame, for later ones, only find non-zero pixels around the previous result line. If there is no line found or the newly found line has unreasonable curvature, redo the window search. The image below is an example of found lines as a whole as well as in each window. The code appears in function 'skip_window_search'.
 ![alt text][image4]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-It is included in function 'measure_curvature'. The length of dashed line is 3.7m, the space between 2 dashed lines is about 20 feet = 6.1m, there are about 2 lines and 1 spaces in the image, the actual length covered in warped image is about 15 meters, which occupied 720 pixels. The warped 2 lane lines are about 900 pixels away from each other, with actual width of about 3.7 meters. Based on there two parameters, the curvature can be computed by the formula detailed explained at [here][http://www.intmath.com/applications-differentiation/8-radius-curvature.php].
+The code is included in function 'measure_curvature'. The length of dashed line is 3.7m, the space between 2 dashed lines is about 20 feet = 6.1m, from the image above we can see, there are about 2 lines and 1 spaces in the image, the actual length covered in warped image is about 15 meters, which occupied 720 pixels. The warped 2 lane lines are about 900 pixels away from each other, with actual width of about 3.7 meters. Based on there two parameters, the curvature can be computed by the formula detailed explained at [here][http://www.intmath.com/applications-differentiation/8-radius-curvature.php].
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
