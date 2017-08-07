@@ -13,14 +13,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./output_images/undistort_output.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image1]: ./output_images/undistorted_example.jpg "Undistorted"
+[image2]: ./output_images/warped_example.jpg "Road Transformed"
+[image3]: ./output_images/find_line_sample.jpg "Binary Example"
+[image4]: ./output_images/found_line_with_window.jpg "Warp Example"
+[image5]: ./output_images/result_example.jpg "Fit Visual"
+[image6]: /output_images/test2.jpg
 [video1]: ./project_video.mp4 "Video"
-
 ### Camera Calibration
 
 #### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
@@ -32,18 +31,14 @@ The code for this step is contained in 'cal_undistort' function in main.py
 
 
 ### Pipeline (single images)
-
+The following is the detailed description of pipepline, applied on an example image like below
+![alt text][image6]
 #### 1. Distortion correction
 
 I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 ![alt text][image1]
 
-#### 2. Thresholding using color space and gradient.
-
-I used a combination of color and gradient thresholds to generate a binary image, since hue and saturation channel in HLS performs robustly in detecting the lane line, these two color spaces are used in this section. I applied 'cv2.Sobel' on hue channel, then applied thresholding on absolute sobel value of hue channel and raw saturation channel. Combine the result of these two thresholded images as the output.
-![alt text][image3]
-
-#### 3. Perspective transform
+#### 2. Perspective transform
 
 The code for my perspective transform appears in lines 1 through 8 in the file `example.py`.  Here the source and destination points are define as follows, in order to transform only the region of interest in origin image to a top-viewed image. 
 <!-- ```python
@@ -70,13 +65,18 @@ Since the size of input image are fixed, perspective transform are the same for 
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image4]
+![alt text][image2]
+#### 3. Thresholding using color space and gradient.
+
+I used a combination of color and gradient thresholds to generate a binary image, since hue and saturation channel in HLS performs robustly in detecting the lane line, these two color spaces are used in this section. I applied 'cv2.Sobel' on hue channel, then applied thresholding on absolute sobel value of hue channel and raw saturation channel. Combine the result of these two thresholded images as the output.
+![alt text][image3]
+
 
 #### 4. Find the line using window search
 For an image, window search are used for the warped thresholded image. For a given window, select position on x-axis with most non-zero pixels as a point on a line. Go through the whole image from bottom to top.
 For a video, do the same thing on the image of 1st frame, for later ones, only find non-zero pixels around the previous result line. If there is no line found or the newly found line has unreasonable curvature, redo the window search. The image below is an example of found lines.
 
-![alt text][image5]
+![alt text][image4]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
@@ -86,7 +86,7 @@ It is included in function 'measure_curvature'. The length of dashed line is 3.7
 
 After find lines, applied perspective transformation again from warped image back to original image, the code  result of the example image is shown as below
 
-![alt text][image6]
+![alt text][image5]
 
 ---
 
