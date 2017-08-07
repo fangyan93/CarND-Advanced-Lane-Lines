@@ -15,10 +15,12 @@ The goals / steps of this project are the following:
 
 [image1]: ./output_images/undistorted_example.jpg "Undistorted"
 [image2]: ./output_images/warped_example.jpg "Road Transformed"
-[image3]: ./output_images/find_line_sample.jpg "Binary Example"
-[image4]: ./output_images/found_line_with_window.jpg "Warp Example"
-[image5]: ./output_images/result_example.jpg "Fit Visual"
-[image6]: /output_images/test2.jpg
+[image3]: ./output_images/find_line_sample.jpg "Threshold"
+[image4]: ./output_images/found_line_with_window.jpg "Find Line"
+[image5]: ./output_images/colored_line_area.jpg "Draw area"
+[image6]: ./output_images/warped_colored_line_area.jpg "Warp Draw area"
+[image7]: ./output_images/result_example.jpg "Fit Visual"
+[image8]: /output_images/test2.jpg
 [video1]: ./project_video.mp4 "Video"
 ### Camera Calibration
 
@@ -32,7 +34,7 @@ The code for this step is contained in 'cal_undistort' function in main.py
 
 ### Pipeline (single images)
 The following is the detailed description of pipepline, applied on an example image like below
-![alt text][image6]
+![alt text][image8]
 #### 1. Distortion correction
 
 I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
@@ -84,9 +86,13 @@ It is included in function 'measure_curvature'. The length of dashed line is 3.7
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-After find lines, applied perspective transformation again from warped image back to original image, the code  result of the example image is shown as below
-
+After find lines, applied perspective transformation again from warped image back to original image. Firstly, 'cv2.fillpoly' help draw the area detected to be between two lane lines on warped image. 
 ![alt text][image5]
+then transforms the image back to original perspective.
+![alt text][image6]
+In the end, combine the lane line area with original image, result of the example image is shown as below
+
+![alt text][image7]
 
 ---
 
