@@ -283,8 +283,15 @@ def find_line_in_image(img):
 		cv2.imwrite('threshed_example.jpg',threshed)
 		plt.imshow(result)
 		plt.show()
-	plt.imshow(result)
-	plt.show()
+	
+	lcurve_string = 'Left Curvature: ' + str(left_curve) + 'm'
+	rcurve_string = 'Right Curvature: ' + str(right_curve) + 'm'
+	# x coordinate of mid point of bottom of region interest is (1075 + 290) / 2 = 682.5
+	mid = (682.5 - (leftx[0] + rightx[0]) / 2) * (3.7 / 9)
+	dis_to_center = 'Distance from center: ' + str(mid) + ' cm'
+	cv2.putText(result, lcurve_string, (20,40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), thickness=2)
+	cv2.putText(result, rcurve_string, (20,70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), thickness=2)
+	cv2.putText(result, dis_to_center, (20,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), thickness=2)
 	return result
 
 import os
