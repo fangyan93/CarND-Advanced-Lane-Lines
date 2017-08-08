@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 [image4]: ./output_images/found_line_with_window.jpg "Find Line"
 [image5]: ./output_images/colored_line_area.jpg "Draw area"
 [image6]: ./output_images/warped_colored_line_area.jpg "Warp Draw area"
-[image7]: ./output_images/result_example.jpg "Fit Visual"
+[image7]: ./output_images/result.jpg "Fit Visual"
 [image8]: /output_images/test2.jpg
 [video1]: ./project_video.mp4 "Video"
 ### Camera Calibration
