@@ -97,7 +97,7 @@ In the end, combine the lane line area with original image, result of the exampl
 
 ### Pipeline (video)
 
-#### 1. Test on video is 's a [here](https://www.youtube.com/watch?v=40vqlp-c1GE). Please open it in a new tab. 
+#### 1. Test on video is 's a [here](https://youtu.be/b4xZWyG8Ta0). Please open it in a new tab. 
 
 ---
 
